@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Planet Awareness</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e6f2ea;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    nav {
+      background-color: #065f46;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 6px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    nav a:hover {
+      background-color: #047857;
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+      color: #065f46;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      width: 200px;
+      height: 260px;
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background: #f0fdf4;
+      text-align: center;
+    }
+
+    .card-front img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 4px solid #34d399;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      padding: 15px;
+      font-size: 0.95em;
+    }
+
+    hr {
+      height: 4px;
+      background-color: #065f46;
+      border: none;
+      width: 80%;
+      margin: 40px auto;
+      border-radius: 2px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 12px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #059669;
+      transform: scale(1.05);
+    }
+
+    #location-output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e0f2f1;
+      border-radius: 10px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#heroes">Eco Heroes</a>
+    <a href="#plants">Endangered Plants</a>
+    <a href="#location">Your Area Health</a>
+  </nav>
+
+  <section id="heroes">
+    <h2>🌿 Environmental Heroes</h2>
+    <div class="card-container">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://www.nobelprize.org/uploads/2018/06/04_05_oslo-1.jpg">
+            <p><strong>Wangari Maathai</strong></p>
+          </div>
+          <div class="card-back">
+            <p>Founded the Green Belt Movement, planted 51 million trees in Kenya.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAZslb_Noq2j9L7bz5TQBUUlwuylRMsXuiGQ&s">
+            <p><strong>Sunderlal Bahuguna</strong></p>
+          </div>
+          <div class="card-back">
+            <p>Leader of the Chipko movement, hugged trees to prevent deforestation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://images.takeshape.io/86ce9525-f5f2-4e97-81ba-54e8ce933da7/dev/874d900e-bbde-4b4c-bd70-560d414ce46a/OE_Hero_Jadav_Payeng_3.jpg">
+            <p><strong>Jadav Payeng</strong></p>
+          </div>
+          <div class="card-back">
+            <p>Known as the Forest Man of India, planted 1400 acres of forest.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt4kD26sTVNKljuan30xW2jZLT7WodwOtVXg&s">
+            <p><strong>Felix Finkbeiner</strong></p>
+          </div>
+          <div class="card-back">
+            <p>Youth environmentalist, launched Plant-for-the-Planet campaign.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://womenofgreen.com/wp-content/uploads/2011/03/Julia_Butterfly_Hill_241web.jpg">
+            <p><strong>Julia Butterfly Hill</strong></p>
+          </div>
+          <div class="card-back">
+            <p>Saved a redwood tree by living in it for 738 days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="plants">
+    <h2>🌱 Endangered Plants</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfYfHQf78TH_dHOjW4xbKYLBtb7u0joGnVJQ&s">
+        <p><strong>Franklin Tree</strong>: Extinct in the wild since 1803.</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Wakehurst_Place_woodland_Wollemi_pine.jpg/1200px-Wakehurst_Place_woodland_Wollemi_pine.jpg">
+        <p><strong>Wollemi Pine</strong>: Rediscovered in Australia in 1994.</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeo-5yGhscgpolKDDFr8aFt5DmoDX_5UcBpg&s">
+        <p><strong>Nepenthes rajah</strong>: Rare carnivorous plant from Borneo.</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://5.imimg.com/data5/KL/MG/MY-21581361/sago-palm-plant-3-ft-height.jpg">
+        <p><strong>Sago Palm</strong>: Endangered due to habitat loss.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="location">
+    <h2>📍 Check Your Area's Environmental Health</h2>
+    <p style="text-align:center;">Click below to simulate air quality and get planting tips.</p>
+    <div style="text-align:center; margin-top:20px;">
+      <button onclick="getLocation()">Get My Location</button>
+    </div>
+    <div id="location-output">Your result will appear here...</div>
+  </section>
+
+  <script>
+    function getLocation() {
+      const output = document.getElementById("location-output");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        output.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const aqi = Math.floor(Math.random() * 200);
+      let message = `<strong>Your Coordinates:</strong><br>Latitude: ${lat.toFixed(2)}, Longitude: ${lon.toFixed(2)}<br><br>`;
+
+      if (aqi > 150) {
+        message += "😷 Air quality is unhealthy. Plant at least 10–15 trees around you.";
+      } else if (aqi > 75) {
+        message += "🤧 Moderate air. Plant 5–7 trees to improve it.";
+      } else {
+        message += "😊 Clean air! Help maintain it by avoiding pollution.";
+      }
+
+      document.getElementById("location-output").innerHTML = message;
+    }
+
+    function showError(error) {
+      const output = document.getElementById("location-output");
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          output.innerHTML = "User denied the request for Geolocation.";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          output.innerHTML = "Location information is unavailable.";
+          break;
+        case error.TIMEOUT:
+          output.innerHTML = "The request to get user location timed out.";
+          break;
+        case error.UNKNOWN_ERROR:
+          output.innerHTML = "An unknown error occurred.";
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
